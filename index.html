@@ -468,6 +468,93 @@
       margin: 8px 0;
     }
 
+    /* ── ACTIVIDAD TIPO OPCIÓN MÚLTIPLE ── */
+    .mc-passage {
+      background: var(--win-light);
+      border-top:    2px solid var(--win-darker);
+      border-left:   2px solid var(--win-darker);
+      border-right:  2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      font-family: 'Times New Roman', serif;
+      font-size: 13px;
+      line-height: 1.85;
+    }
+    .mc-passage .blank {
+      display: inline-block;
+      min-width: 28px;
+      font-weight: bold;
+      color: var(--title-bar);
+      background: #E8E8FF;
+      padding: 0 5px;
+      border-bottom: 2px solid var(--title-bar);
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+    }
+    .mc-part-label {
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--title-bar);
+      background: var(--win-bg);
+      border-top:    2px solid var(--win-light);
+      border-left:   2px solid var(--win-light);
+      border-right:  2px solid var(--win-darker);
+      border-bottom: 2px solid var(--win-darker);
+      padding: 3px 10px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .mc-question {
+      background: var(--win-light);
+      border-top:    2px solid var(--win-darker);
+      border-left:   2px solid var(--win-darker);
+      border-right:  2px solid var(--win-light);
+      border-bottom: 2px solid var(--win-light);
+      padding: 10px 12px;
+      margin-bottom: 8px;
+    }
+    .mc-q-num {
+      font-size: 10px;
+      font-weight: bold;
+      color: var(--text-2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .mc-q-text {
+      font-family: 'Times New Roman', serif;
+      font-size: 13px;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+    .mc-options { display: flex; flex-direction: column; gap: 5px; }
+    .mc-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      padding: 4px 6px;
+      font-size: 12px;
+    }
+    .mc-option input[type="radio"] { accent-color: var(--title-bar); cursor: pointer; }
+    .mc-option:hover { background: #D4D0C8; }
+    .mc-option.selected-correct { background: var(--ok-bg); color: var(--ok-txt); font-weight: bold; }
+    .mc-option.selected-incorrect { background: var(--err-bg); color: var(--err-txt); }
+    .mc-option.reveal-correct { background: var(--ok-bg); color: var(--ok-txt); font-weight: bold; }
+    .mc-note {
+      font-size: 11px;
+      color: var(--text-2);
+      margin-top: 5px;
+      padding-left: 8px;
+      border-left: 3px solid var(--win-dark);
+      line-height: 1.5;
+      display: none;
+    }
+    .mc-note.visible { display: block; }
+
     @media (max-width: 480px) {
       .level-grid, .topic-grid { grid-template-columns: 1fr; }
       body { padding: 4px; }
@@ -761,7 +848,228 @@ const levels = [
             note: "Con 'prestar atención a', la correlación exige 'no solo a X sino también a Y'. La preposición 'a' debe ir incluida dentro de cada término."
           }
         ]
+      },
+
+      // ── SECCIÓN C: Subjuntivo (opción múltiple) ──
+      {
+        id: "subjuntivo",
+        name: "Sección C — Subjuntivo",
+        icon: "📝",
+        badge: "badge-orden",
+        label: "Subjuntivo",
+        type: "multiplechoice",
+        desc: "Lee el texto y elige la opción correcta para cada hueco. Algunas frases pueden no pertenecer al subjuntivo.",
+        passage: `La reciente decisión del ayuntamiento de reabrir la biblioteca municipal ha generado reacciones diversas entre los vecinos.
+Para muchos usuarios habituales, esta medida es positiva, ya que <span class="blank">(1)</span> que el espacio vuelva a estar disponible supone una mejora en el acceso a la cultura.
+&ldquo;Me <span class="blank">(2)</span> que se haya reconsiderado el cierre&rdquo;, afirma una estudiante universitaria.
+Sin embargo, no todos comparten este entusiasmo. Algunos ciudadanos <span class="blank">(3)</span> la falta de personal afecte al funcionamiento diario del centro.
+Además, existe <span class="blank">(4)</span> los horarios no sean suficientes para cubrir la demanda actual, lo que podría provocar molestias entre los usuarios.
+Otros vecinos reconocen que entienden las dificultades económicas, pero <span class="blank">(5)</span> el impacto social de esta decisión.
+Según ellos, la biblioteca cumple una función fundamental, especialmente para quienes <span class="blank">(6)</span> este servicio para estudiar o informarse.
+Desde el ayuntamiento aseguran que se han tomado medidas para evitar problemas y que se analizará la situación en los próximos meses.
+Aun así, algunos usuarios <span class="blank">(7)</span> las autoridades mantengan un diálogo constante con los vecinos para garantizar que el servicio funcione correctamente.`,
+        parts: [
+          {
+            label: "Parte 1 — Completa el texto",
+            questions: [
+              {
+                num: 1,
+                text: "… ya que ___ que el espacio vuelva a estar disponible…",
+                options: ["a) la posibilidad de", "b) la posibilidad", "c) es posible"],
+                correct: 0,
+                note: "'La posibilidad de que' requiere 'de' antes del subjuntivo. Aquí se omite 'que', así que la construcción es 'la posibilidad de + infinitivo': la posibilidad de que… (hueco 1 abre la subordinada)."
+              },
+              {
+                num: 2,
+                text: "&ldquo;Me ___ que se haya reconsiderado el cierre&rdquo;",
+                options: ["a) alegro", "b) alegra de", "c) alegro de"],
+                correct: 2,
+                note: "'Alegrarse de que' exige la preposición 'de': me alegro de que + subjuntivo."
+              },
+              {
+                num: 3,
+                text: "Algunos ciudadanos ___ la falta de personal afecte…",
+                options: ["a) temen", "b) temen que", "c) teman que"],
+                correct: 1,
+                note: "'Temer que' introduce una subordinada de subjuntivo. Se usa el indicativo 'temen' (no subjuntivo 'teman') porque es la oración principal."
+              },
+              {
+                num: 4,
+                text: "Además, existe ___ los horarios no sean suficientes…",
+                options: ["a) la posibilidad que", "b) la posibilidad de", "c) la posibilidad de que"],
+                correct: 2,
+                note: "La construcción correcta es 'la posibilidad de que + subjuntivo'. La preposición 'de' es obligatoria entre el sustantivo y la conjunción 'que'."
+              },
+              {
+                num: 5,
+                text: "…pero ___ el impacto social de esta decisión.",
+                options: ["a) se preocupan por", "b) se preocupan para", "c) se preocupan que"],
+                correct: 0,
+                note: "'Preocuparse por' es la colocación correcta con un sustantivo como objeto. 'Preocuparse de que' se usaría con subjuntivo, pero aquí el objeto es un sustantivo."
+              },
+              {
+                num: 6,
+                text: "…especialmente para quienes ___ este servicio para estudiar…",
+                options: ["a) dependen para", "b) dependen de", "c) dependen a"],
+                correct: 1,
+                note: "'Depender de' es la colocación correcta en español: dependen de este servicio."
+              },
+              {
+                num: 7,
+                text: "…algunos usuarios ___ las autoridades mantengan un diálogo…",
+                options: ["a) piden a", "b) piden que", "c) piden de que"],
+                correct: 1,
+                note: "'Pedir que + subjuntivo' es la construcción correcta para expresar ruego o solicitud. No se añade preposición entre 'pedir' y 'que'."
+              }
+            ]
+          },
+          {
+            label: "Parte 2 — Comprensión del texto",
+            questions: [
+              {
+                num: 8,
+                text: "¿Cuál es la idea principal del texto?",
+                options: [
+                  "a) El ayuntamiento ha decidido cerrar definitivamente la biblioteca.",
+                  "b) La reapertura de la biblioteca genera satisfacción, pero también preocupaciones.",
+                  "c) Los ciudadanos no están de acuerdo con la gestión cultural del barrio."
+                ],
+                correct: 1,
+                note: "El texto presenta reacciones mixtas: algunos valoran la reapertura, otros tienen dudas sobre recursos y horarios."
+              },
+              {
+                num: 9,
+                text: "¿Por qué algunos vecinos están preocupados por la reapertura?",
+                options: [
+                  "a) Porque no les interesa el acceso a la cultura.",
+                  "b) Porque temen que no haya suficientes recursos para su funcionamiento.",
+                  "c) Porque prefieren que el espacio se utilice con otros fines."
+                ],
+                correct: 1,
+                note: "El texto menciona la falta de personal y la posibilidad de que los horarios no sean suficientes."
+              },
+              {
+                num: 10,
+                text: "¿Qué garantiza el ayuntamiento según el texto?",
+                options: [
+                  "a) Que la biblioteca tendrá más usuarios que antes.",
+                  "b) Que se cerrará si no funciona correctamente.",
+                  "c) Que se analizará la situación en el futuro."
+                ],
+                correct: 2,
+                note: "El texto dice: 'se analizará la situación en los próximos meses'."
+              }
+            ]
+          }
+        ]
+      },
+
+      // ── SECCIÓN D: Artículo (opción múltiple) ──
+      {
+        id: "articulo",
+        name: "Sección D — El artículo",
+        icon: "📝",
+        badge: "badge-pron",
+        label: "Artículo",
+        type: "multiplechoice",
+        desc: "Lee el texto y elige la opción correcta para cada hueco. Presta atención al uso del artículo determinado, indeterminado o su ausencia.",
+        passage: `El debate sobre <span class="blank">(1)</span> uso de los espacios públicos en las ciudades modernas es cada vez más relevante.
+Muchos urbanistas defienden que <span class="blank">(2)</span> parques y plazas deben ser accesibles para todos, independientemente de <span class="blank">(3)</span> nivel socioeconómico.
+Sin embargo, <span class="blank">(4)</span> decisión de privatizar ciertos espacios ha generado controversia.
+&ldquo;Es <span class="blank">(5)</span> problema que afecta a toda la comunidad&rdquo;, afirma <span class="blank">(6)</span> portavoz vecinal consultada para este artículo.
+Desde <span class="blank">(7)</span> administración local se insiste en que se busca <span class="blank">(8)</span> equilibrio entre la inversión privada y el interés general.`,
+        parts: [
+          {
+            label: "Parte 1 — Completa el texto",
+            questions: [
+              {
+                num: 1,
+                text: "El debate sobre ___ uso de los espacios públicos…",
+                options: ["a) el", "b) un", "c) —  (sin artículo)"],
+                correct: 0,
+                note: "Se usa el artículo determinado 'el' porque se habla de un concepto conocido y específico: el uso (de los espacios públicos en general, como categoría)."
+              },
+              {
+                num: 2,
+                text: "…defienden que ___ parques y plazas deben ser accesibles…",
+                options: ["a) los", "b) unos", "c) — (sin artículo)"],
+                correct: 0,
+                note: "'Los parques y plazas' con artículo determinado porque se refiere a todos en general, como categoría. En español, las generalizaciones con sustantivos contables en plural llevan artículo determinado."
+              },
+              {
+                num: 3,
+                text: "…independientemente de ___ nivel socioeconómico.",
+                options: ["a) el", "b) un", "c) — (sin artículo)"],
+                correct: 1,
+                note: "Se usa 'un' porque se habla de cualquier nivel, no uno específico. La expresión 'independientemente de + un sustantivo' indica indefinición."
+              },
+              {
+                num: 4,
+                text: "___ decisión de privatizar ciertos espacios…",
+                options: ["a) Una", "b) La", "c) — (sin artículo)"],
+                correct: 1,
+                note: "Se usa el artículo determinado 'la' porque la decisión ya se conoce contextualmente: se ha mencionado implícitamente en el debate anterior."
+              },
+              {
+                num: 5,
+                text: "&ldquo;Es ___ problema que afecta a toda la comunidad&rdquo;",
+                options: ["a) un", "b) el", "c) — (sin artículo)"],
+                correct: 0,
+                note: "Se usa 'un' porque se introduce el problema por primera vez en el discurso directo, sin referencia previa específica."
+              },
+              {
+                num: 6,
+                text: "…afirma ___ portavoz vecinal consultada…",
+                options: ["a) una", "b) la", "c) — (sin artículo)"],
+                correct: 0,
+                note: "Se usa 'una' porque es la primera mención de esta persona y no ha sido identificada previamente."
+              },
+              {
+                num: 7,
+                text: "Desde ___ administración local se insiste…",
+                options: ["a) una", "b) la", "c) — (sin artículo)"],
+                correct: 1,
+                note: "Se usa 'la' porque hay una sola administración local conocida y específica en ese contexto."
+              },
+              {
+                num: 8,
+                text: "…se busca ___ equilibrio entre la inversión privada…",
+                options: ["a) el", "b) un", "c) — (sin artículo)"],
+                correct: 1,
+                note: "Se usa 'un' porque el equilibrio es un objetivo indefinido que se persigue, no uno ya conocido o logrado."
+              }
+            ]
+          },
+          {
+            label: "Parte 2 — Comprensión del texto",
+            questions: [
+              {
+                num: 9,
+                text: "¿Cuál es el tema principal del texto?",
+                options: [
+                  "a) Los problemas económicos de las ciudades modernas.",
+                  "b) El debate sobre el uso y la privatización de los espacios públicos.",
+                  "c) La falta de parques y plazas en las ciudades."
+                ],
+                correct: 1,
+                note: "El texto gira en torno al uso de los espacios públicos y la polémica sobre su privatización."
+              },
+              {
+                num: 10,
+                text: "¿Qué postura defienden los urbanistas según el texto?",
+                options: [
+                  "a) Que los espacios privados son más eficientes.",
+                  "b) Que los espacios públicos deben ser accesibles para todos.",
+                  "c) Que la inversión privada es la mejor solución."
+                ],
+                correct: 1,
+                note: "El texto dice: 'muchos urbanistas defienden que los parques y plazas deben ser accesibles para todos'."
+              }
+            ]
+          }
+        ]
       }
+
     ]
   }
 ];
@@ -788,7 +1096,10 @@ function buildLevelSelector() {
   const grid = document.getElementById('level-grid');
   grid.innerHTML = '';
   levels.forEach(lv => {
-    const totalItems = lv.topics.reduce((s, t) => s + t.items.length, 0);
+    const totalItems = lv.topics.reduce((s, t) => {
+      if (t.type === 'multiplechoice') return s + t.parts.reduce((ps, p) => ps + p.questions.length, 0);
+      return s + t.items.length;
+    }, 0);
     const btn = document.createElement('button');
     btn.className = 'level-btn';
     btn.innerHTML = `
@@ -821,10 +1132,13 @@ function buildTopicGrid(level) {
   level.topics.forEach(t => {
     const btn = document.createElement('button');
     btn.className = 'topic-btn';
+    const cnt = t.type === 'multiplechoice'
+      ? t.parts.reduce((s, p) => s + p.questions.length, 0)
+      : t.items.length;
     btn.innerHTML = `
       <span class="t-icon">${t.icon}</span>
       <span class="t-name">${t.name}</span>
-      <span class="t-count">${t.items.length} ejercicio${t.items.length !== 1 ? 's' : ''}</span>
+      <span class="t-count">${cnt} ejercicio${cnt !== 1 ? 's' : ''}</span>
     `;
     btn.onclick = () => startTopic(t, false);
     grid.appendChild(btn);
@@ -851,13 +1165,26 @@ function startTopic(topic, random) {
     : topic.name;
   document.getElementById('ex-subtitle').textContent = `Nivel ${currentLevel.id} · Corrección de errores`;
   document.getElementById('ex-desc').textContent = topic.desc || '';
+  const totalQ = topic.type === 'multiplechoice'
+    ? topic.parts.reduce((s, p) => s + p.questions.length, 0)
+    : topic.items.length;
   buildItems(topic);
-  setStatus(topic.name + ' — ' + topic.items.length + ' ejercicios.', currentLevel.id);
+  setStatus(topic.name + ' — ' + totalQ + ' preguntas.', currentLevel.id);
 }
 
 function buildItems(topic) {
   const container = document.getElementById('items-container');
   container.innerHTML = '';
+
+  if (topic.type === 'multiplechoice') {
+    buildMultipleChoice(topic, container);
+  } else {
+    buildTextInput(topic, container);
+  }
+}
+
+// ── Tipo texto libre (existente) ──
+function buildTextInput(topic, container) {
   topic.items.forEach((item, i) => {
     const n = i + 1;
     const card = document.createElement('div');
@@ -874,6 +1201,47 @@ function buildItems(topic) {
       <div class="note" id="note-${n}"></div>
     `;
     container.appendChild(card);
+  });
+}
+
+// ── Tipo opción múltiple ──
+function buildMultipleChoice(topic, container) {
+  // Texto del pasaje
+  if (topic.passage) {
+    const passageDiv = document.createElement('div');
+    passageDiv.className = 'mc-passage';
+    passageDiv.innerHTML = topic.passage.replace(/\n/g, '<br>');
+    container.appendChild(passageDiv);
+  }
+
+  // Partes con preguntas
+  let globalIndex = 0;
+  topic.parts.forEach((part, pi) => {
+    const partLabel = document.createElement('div');
+    partLabel.className = 'mc-part-label';
+    partLabel.textContent = part.label;
+    container.appendChild(partLabel);
+
+    part.questions.forEach((q, qi) => {
+      globalIndex++;
+      const qDiv = document.createElement('div');
+      qDiv.className = 'mc-question';
+      qDiv.id = 'mcq-' + globalIndex;
+      qDiv.innerHTML = `
+        <div class="mc-q-num">Pregunta ${q.num}</div>
+        <div class="mc-q-text">${q.text}</div>
+        <div class="mc-options" id="mco-${globalIndex}">
+          ${q.options.map((opt, oi) => `
+            <label class="mc-option" id="mcopt-${globalIndex}-${oi}">
+              <input type="radio" name="mcq-${globalIndex}" value="${oi}" onchange="checkMC(${globalIndex}, ${oi}, ${q.correct}, ${pi}, ${qi})">
+              ${opt}
+            </label>
+          `).join('')}
+        </div>
+        <div class="mc-note" id="mcnote-${globalIndex}">${q.note}</div>
+      `;
+      container.appendChild(qDiv);
+    });
   });
 }
 
@@ -903,6 +1271,7 @@ function normalize(s) {
   return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
 }
 
+// ── Corrección texto libre ──
 function check(n) {
   if (!currentTopic) return;
   const item = currentTopic.items[n - 1];
@@ -924,26 +1293,76 @@ function check(n) {
   }
 }
 
+// ── Corrección opción múltiple ──
+function checkMC(globalIndex, selected, correct, pi, qi) {
+  const optionsDiv = document.getElementById('mco-' + globalIndex);
+  const noteDiv    = document.getElementById('mcnote-' + globalIndex);
+  const labels     = optionsDiv.querySelectorAll('.mc-option');
+
+  // Deshabilitar radios
+  optionsDiv.querySelectorAll('input[type="radio"]').forEach(r => r.disabled = true);
+
+  labels.forEach((lbl, i) => {
+    lbl.classList.remove('selected-correct', 'selected-incorrect', 'reveal-correct');
+    if (i === selected && selected === correct) lbl.classList.add('selected-correct');
+    else if (i === selected && selected !== correct) lbl.classList.add('selected-incorrect');
+    else if (i === correct) lbl.classList.add('reveal-correct');
+  });
+
+  noteDiv.classList.add('visible');
+}
+
 function showAll() {
   if (!currentTopic) return;
-  currentTopic.items.forEach((item, i) => {
-    const n    = i + 1;
-    const fb   = document.getElementById('fb-' + n);
-    const note = document.getElementById('note-' + n);
-    fb.className = 'feedback show-ans';
-    fb.textContent = 'Respuesta: ' + item.ideal;
-    note.textContent = item.note;
-  });
+  if (currentTopic.type === 'multiplechoice') {
+    let g = 0;
+    currentTopic.parts.forEach(part => {
+      part.questions.forEach(q => {
+        g++;
+        const optionsDiv = document.getElementById('mco-' + g);
+        if (!optionsDiv) return;
+        optionsDiv.querySelectorAll('input[type="radio"]').forEach(r => r.disabled = true);
+        optionsDiv.querySelectorAll('.mc-option').forEach((lbl, i) => {
+          lbl.classList.remove('selected-correct', 'selected-incorrect', 'reveal-correct');
+          if (i === q.correct) lbl.classList.add('reveal-correct');
+        });
+        const noteDiv = document.getElementById('mcnote-' + g);
+        if (noteDiv) noteDiv.classList.add('visible');
+      });
+    });
+  } else {
+    currentTopic.items.forEach((item, i) => {
+      const n    = i + 1;
+      const fb   = document.getElementById('fb-' + n);
+      const note = document.getElementById('note-' + n);
+      fb.className = 'feedback show-ans';
+      fb.textContent = 'Respuesta: ' + item.ideal;
+      note.textContent = item.note;
+    });
+  }
 }
 
 function calcScore() {
   if (!currentTopic) return;
-  let correct = 0;
-  const total = currentTopic.items.length;
-  currentTopic.items.forEach((item, i) => {
-    const norm = normalize(document.getElementById('in-' + (i + 1)).value);
-    if (norm && item.accept.some(a => norm.includes(normalize(a)))) correct++;
-  });
+  let correct = 0, total = 0;
+
+  if (currentTopic.type === 'multiplechoice') {
+    let g = 0;
+    currentTopic.parts.forEach(part => {
+      part.questions.forEach(q => {
+        g++; total++;
+        const radios = document.querySelectorAll(`input[name="mcq-${g}"]`);
+        radios.forEach(r => { if (r.checked && parseInt(r.value) === q.correct) correct++; });
+      });
+    });
+  } else {
+    total = currentTopic.items.length;
+    currentTopic.items.forEach((item, i) => {
+      const norm = normalize(document.getElementById('in-' + (i + 1)).value);
+      if (norm && item.accept.some(a => norm.includes(normalize(a)))) correct++;
+    });
+  }
+
   const bar = document.getElementById('score-bar');
   bar.classList.add('visible');
   document.getElementById('score-num').textContent = correct + '/' + total;
@@ -961,14 +1380,31 @@ function calcScore() {
 
 function resetExercise() {
   if (!currentTopic) return;
-  currentTopic.items.forEach((_, i) => {
-    const n = i + 1;
-    document.getElementById('in-' + n).value = '';
-    const fb = document.getElementById('fb-' + n);
-    fb.className = 'feedback';
-    fb.textContent = '';
-    document.getElementById('note-' + n).textContent = '';
-  });
+  if (currentTopic.type === 'multiplechoice') {
+    let g = 0;
+    currentTopic.parts.forEach(part => {
+      part.questions.forEach(() => {
+        g++;
+        const optionsDiv = document.getElementById('mco-' + g);
+        if (!optionsDiv) return;
+        optionsDiv.querySelectorAll('input[type="radio"]').forEach(r => { r.disabled = false; r.checked = false; });
+        optionsDiv.querySelectorAll('.mc-option').forEach(lbl => {
+          lbl.classList.remove('selected-correct', 'selected-incorrect', 'reveal-correct');
+        });
+        const noteDiv = document.getElementById('mcnote-' + g);
+        if (noteDiv) noteDiv.classList.remove('visible');
+      });
+    });
+  } else {
+    currentTopic.items.forEach((_, i) => {
+      const n = i + 1;
+      document.getElementById('in-' + n).value = '';
+      const fb = document.getElementById('fb-' + n);
+      fb.className = 'feedback';
+      fb.textContent = '';
+      document.getElementById('note-' + n).textContent = '';
+    });
+  }
   document.getElementById('score-bar').classList.remove('visible');
   setStatus('Ejercicio reiniciado.', currentLevel.id);
 }
